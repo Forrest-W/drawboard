@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
+import { useAuth } from '../auth/AuthContext'
 
 type Tool = 'pen' | 'eraser'
 
@@ -29,6 +30,7 @@ function downloadBlob(blob: Blob, filename: string) {
 }
 
 export default function Blackboard() {
+  const { user, logout } = useAuth()
   const wrapRef = useRef<HTMLDivElement | null>(null)
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
 
@@ -270,7 +272,9 @@ export default function Blackboard() {
         <div className="bb-left">
           <div className="bb-title">
             <div className="bb-title-main">电子黑板</div>
-            <div className="bb-title-sub">画画并导出为图片</div>
+            <div className="bb-title-sub">
+              {user ? `当前用户：${user.name}` : '画画并导出为图片'}
+            </div>
           </div>
         </div>
 
@@ -340,6 +344,12 @@ export default function Blackboard() {
           <button type="button" className="bb-btn bb-primary" onClick={exportPng}>
             导出 PNG
           </button>
+
+          {user && (
+            <button type="button" className="bb-btn" onClick={logout}>
+              退出登录
+            </button>
+          )}
         </div>
       </header>
 
