@@ -1,0 +1,198 @@
+.bb {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+}
+
+.bb-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  background:
+    radial-gradient(1200px 400px at 10% 0%, rgba(255, 255, 255, 0.09), transparent),
+    rgba(9, 20, 16, 0.86);
+  backdrop-filter: blur(10px);
+}
+
+.bb-title {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  line-height: 1.1;
+}
+
+.bb-title-main {
+  font-size: 16px;
+  font-weight: 650;
+  color: rgba(255, 255, 255, 0.92);
+  letter-spacing: 0.2px;
+}
+
+.bb-title-sub {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.bb-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.bb-seg {
+  display: inline-flex;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 10px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.bb-btn {
+  appearance: none;
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.86);
+  padding: 8px 10px;
+  font-size: 13px;
+  cursor: pointer;
+  transition:
+    background 160ms ease,
+    opacity 160ms ease;
+}
+
+.bb-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.bb-btn:disabled {
+  opacity: 0.42;
+  cursor: not-allowed;
+}
+
+.bb-btn-on {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.bb-primary {
+  background: rgba(232, 244, 255, 0.18);
+  border: 1px solid rgba(232, 244, 255, 0.22);
+  border-radius: 10px;
+}
+
+.bb-danger {
+  background: rgba(255, 84, 84, 0.12);
+  border: 1px solid rgba(255, 84, 84, 0.18);
+  border-radius: 10px;
+}
+
+.bb-field {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 12px;
+}
+
+.bb-field input[type='color'] {
+  width: 26px;
+  height: 20px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.bb-range input[type='range'] {
+  width: 120px;
+}
+
+.bb-check {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 12px;
+  user-select: none;
+}
+
+.bb-board {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  background:
+    radial-gradient(900px 600px at 30% 20%, rgba(255, 255, 255, 0.07), transparent 60%),
+    radial-gradient(800px 500px at 80% 40%, rgba(255, 255, 255, 0.05), transparent 55%),
+    linear-gradient(180deg, rgba(15, 45, 35, 0.95), rgba(10, 32, 24, 0.98));
+  overflow: hidden;
+}
+
+.bb-board::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.02) 0,
+      rgba(255, 255, 255, 0.02) 1px,
+      transparent 1px,
+      transparent 44px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.018) 0,
+      rgba(255, 255, 255, 0.018) 1px,
+      transparent 1px,
+      transparent 44px
+    ),
+    radial-gradient(1px 1px at 10% 30%, rgba(255, 255, 255, 0.06) 0, transparent 60%),
+    radial-gradient(1px 1px at 70% 80%, rgba(255, 255, 255, 0.05) 0, transparent 60%),
+    radial-gradient(1px 1px at 40% 60%, rgba(255, 255, 255, 0.04) 0, transparent 60%);
+  opacity: 0.6;
+  mix-blend-mode: overlay;
+}
+
+.bb-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+}
+
+.bb-hint {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  padding: 7px 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(0, 0, 0, 0.25);
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 12px;
+  pointer-events: none;
+}
+
+@media (max-width: 860px) {
+  .bb-title-sub {
+    display: none;
+  }
+  .bb-range input[type='range'] {
+    width: 92px;
+  }
+}
